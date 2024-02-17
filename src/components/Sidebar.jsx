@@ -3,10 +3,19 @@ import {GrArticle, GrPieChart} from 'react-icons/gr';
 import {TbSchool} from 'react-icons/tb';
 import {HiOutlineBuildingOffice2} from 'react-icons/hi2';
 import { FaRegUser } from "react-icons/fa6";
+import { useAuth } from '../hooks/useAuth';
+
+
 
 
 
 export default function Sidebar({onMenuClick, selectedMenuItem}){
+
+  const {logout} = useAuth();
+
+  const handleLogout = () => {
+    logout()
+  }
 
     const sideBarItems = [
         {
@@ -67,10 +76,11 @@ export default function Sidebar({onMenuClick, selectedMenuItem}){
   </div>
 
   <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-    <form action="/logout">
+    
       <button
         type="submit"
         className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+        onClick={handleLogout}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +103,7 @@ export default function Sidebar({onMenuClick, selectedMenuItem}){
           Logout
         </span>
       </button>
-    </form>
+    
   </div>
 </div>
     )

@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import { useAuth } from '../../../context/AuthContext';
-import {useNavigate} from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+
 
 function SignIn(props) {
-    const navigate = useNavigate();
-    const {signIn} = useAuth();
+    const {login} = useAuth();
+    
     const [formData, setFormData] = useState({
-        username: '',
         email: '',
         password: ''
     });
@@ -16,12 +15,7 @@ function SignIn(props) {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        //Call the signIn Function from the authentication context
-         signIn(formData);
-
-        //redirection
-        navigate('/dashboard');
+        console.log(formData)
     }
     return (
         <form onSubmit={handleSubmit} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 max-w-md mx-auto">

@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import Index from './pages/Index';
 import DashBoard from './pages/Dashboard';
 import CreateBlog from './pages/CreateBlog';
+import { ProtectedRoute } from './components/ProtectedRoutes';
 
 
 function App() {
@@ -10,8 +11,22 @@ function App() {
     <>
       <Routes>
         <Route index element={<Index/>}/>
-        <Route path='create-blog' element={<CreateBlog/>} />
-        <Route path='dashboard' element={<DashBoard/>}/>
+        <Route
+          path='dashboard'
+          element={
+            <ProtectedRoute>
+              <DashBoard/>
+            </ProtectedRoute>
+          }
+        />
+      <Route
+        path='create-blog'
+        element={
+          <ProtectedRoute>
+            <CreateBlog/>
+          </ProtectedRoute>
+        }
+      />
       </Routes>
     </>
   )
