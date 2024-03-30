@@ -2,8 +2,8 @@
 import React from 'react';
 import Overview from './dashComps/Overview';
 import Blogs from './dashComps/Blogs';
-import Scholarships from './dashComps/Scholarships';
-import Jobs from './dashComps/Jobs';
+import Programmes from './dashComps/Programmes';
+import Adverts from './dashComps/Adverts';
 import Profile from './dashComps/Profile';
 
 const DashCompCover = ({ selectedMenuItem }) => {
@@ -11,8 +11,8 @@ const DashCompCover = ({ selectedMenuItem }) => {
     <div className="flex-1 p-4 lg:p-8 ">
       {selectedMenuItem === 'Overview' && <Overview />}
       {selectedMenuItem === 'Blogs' && <Blogs />}
-      {selectedMenuItem === 'Scholarships' && <Scholarships />}
-      {selectedMenuItem === 'Jobs' && <Jobs />}
+      {selectedMenuItem === 'Programmes' && <Programmes />}
+      {selectedMenuItem === 'Adverts' && <Adverts />}
       {selectedMenuItem === 'Profile' && <Profile />}
     </div>
   );

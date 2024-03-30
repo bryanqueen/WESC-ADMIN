@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function SignUp(props) {
+const apiPath = 'https://fair-gold-termite-sock.cyclic.app/api/v1/'
+
+function SignUp() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
+  
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name] : e.target.value})
+  };
+ 
+
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(`${apiPath}signup`, formData);
+      console.log(response)
+    } catch (error) {
+      console.error('An error occured', error)
+    }
+  }
     return (
-        <form action="" className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 max-w-md mx-auto">
       <p className="text-center text-lg font-medium">If you don't have an account</p>
 
       <div>
@@ -14,6 +38,7 @@ function SignUp(props) {
             className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="username"
             name='username'
+            onChange={handleChange}
           />
 
           <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -43,6 +68,7 @@ function SignUp(props) {
             className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="email"
             name='email'
+            onChange={handleChange}
           />
 
           <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -73,6 +99,7 @@ function SignUp(props) {
             className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             placeholder="password"
             name='password'
+            // onChange={handleChange}
           />
 
           <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
