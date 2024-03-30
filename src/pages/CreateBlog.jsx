@@ -1,10 +1,22 @@
 import BlogForm from "../components/BlogForm";
+import axios from "axios";
+
+const apiPath = 'https://fair-gold-termite-sock.cyclic.app/api/v1/'
 
 const CreateBlog = () => {
-    const handleCreateBlog = (formData) => {
+    const handleCreateBlog = async (formData) => {
       // Implement logic to create a new blog (e.g., send API request)
-      console.log('Creating blog with data:', formData);
-      // Redirect or perform any additional actions after successful creation
+      try {
+        const response = await axios.post(`${apiPath}blogs`, formData , {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        console.log('Blog Created Successfully:', response.data);
+        // Redirect or perform any additional actions after successful creation
+      } catch (error) {
+        console.error('Error creating blog:', error);
+      }
     };
   
     return (

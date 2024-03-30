@@ -1,21 +1,31 @@
 import React, {useState} from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import axios from 'axios';
+
+const apiPath = 'https://fair-gold-termite-sock.cyclic.app/api/v1/'
 
 
 function SignIn(props) {
     const {login} = useAuth();
     
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
-    }
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name] : e.target.value})
+  }
+
+
     const handleSubmit = async (e) => {
+       try {
         e.preventDefault();
-        console.log(formData)
+        const response = await axios.post(`${apiPath}/signin`, formData);
+        console.log(response.status)
+       } catch (error) {
+        console.error('An error occured', error)
+       }
     }
     return (
         <form onSubmit={handleSubmit} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 max-w-md mx-auto">

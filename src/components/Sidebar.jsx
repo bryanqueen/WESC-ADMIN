@@ -4,6 +4,7 @@ import {TbSchool} from 'react-icons/tb';
 import {HiOutlineBuildingOffice2} from 'react-icons/hi2';
 import { FaRegUser } from "react-icons/fa6";
 import { useAuth } from '../hooks/useAuth';
+import Logo from '../assets/Logo.jpeg';
 
 
 
@@ -28,11 +29,11 @@ export default function Sidebar({onMenuClick, selectedMenuItem}){
         },
         {
             icon: <TbSchool/>,
-            name: 'Scholarships',
+            name: 'Programmes',
         },
         {
             icon: <HiOutlineBuildingOffice2/>,
-            name: 'Jobs',
+            name: 'Adverts',
         },
         {
             icon: <FaRegUser/>,
@@ -44,11 +45,7 @@ export default function Sidebar({onMenuClick, selectedMenuItem}){
         <div className="flex w-16 flex-col justify-between border-e bg-white min-h-screen">
   <div>
     <div className="inline-flex h-16 w-16 items-center justify-center">
-      <span
-        className="grid h-10 w-10 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600"
-      >
-        L
-      </span>
+        <img src={Logo} alt="" className='contain w-12 rounded-lg' />
     </div>
 
     <div className="border-t border-gray-100">
